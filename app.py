@@ -294,7 +294,7 @@ with st.sidebar:
     st.markdown("""
     **Model:** facebook/bart-large-cnn  
     **Dataset:** Inshorts News Summary  
-    **Evaluation:** ROUGE-1: 40.60%  
+    **Evaluation:** ROUGE-1: 42.44%
     **Built with:** Streamlit + HuggingFace  
     """)
 
@@ -370,7 +370,7 @@ else:
             <br>
             <p style='font-size: 13px;'>
                 Powered by <b>facebook/bart-large-cnn</b> — 
-                the same model evaluated with ROUGE-1: 40.60% on the Inshorts dataset
+                the same model evaluated with ROUGE-1: 42.44% on the Inshorts dataset
             </p>
         </div>
     """, unsafe_allow_html=True)

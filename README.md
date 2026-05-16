@@ -2,7 +2,7 @@
 
 > An Inshorts-style AI-powered news summarizer that fetches today's news and generates concise summaries using the BART transformer model. Built as part of a Natural Language Processing (NLP) university assignment.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https:/news-summariser-qtejpjjtuogknz3maeao7w.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://news-summariser-qtejpjjtuogknz3maeao7w.streamlit.app)
 
 ---
 
@@ -146,7 +146,7 @@ NEWS_API_KEY = "your_newsapi_key"
 
 The full NLP pipeline is available on Kaggle:
 
-🔗 **[View Kaggle Notebook](https://www.kaggle.com/YOUR_KAGGLE_USERNAME/nlp-a3-news-summarizer)**
+🔗 **[View Kaggle Notebook](https://www.kaggle.com/code/domamanaswini/nlp-a3-25517970)**
 
 ### Notebook Sections:
 1. Setting Up Environment
