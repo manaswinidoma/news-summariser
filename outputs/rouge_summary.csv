@@ -1,0 +1,4 @@
+Metric,F1 Score,Percentage,Best Score,Worst Score
+ROUGE-1,0.4244,42.44%,0.8855,0.044
+ROUGE-2,0.2056,20.56%,0.76,0.0
+ROUGE-L,0.3052,30.52%,0.8454,0.0345

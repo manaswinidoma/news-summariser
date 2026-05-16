@@ -1,0 +1,116 @@
+================================================================================
+ABSTRACTIVE NEWS SUMMARIZATION — BART SAMPLE OUTPUTS
+Generated: 2026-05-16 09:00:17
+Model: facebook/bart-large-cnn
+Dataset: Inshorts News Summary (Kaggle)
+Sample Size: 1000 articles
+================================================================================
+
+ROUGE EVALUATION SUMMARY
+----------------------------------------
+ROUGE-1 : 0.4244 (42.44%)
+ROUGE-2 : 0.2056 (20.56%)
+ROUGE-L : 0.3052 (30.52%)
+
+================================================================================
+TOP 5 BEST SUMMARIES (Highest ROUGE-1)
+================================================================================
+
+EXAMPLE 1 — ROUGE-1: 0.8855
+Headline  : China building high-speed rail tunnel below Great Wall
+Generated : China is constructing a 12-km-long high-speed train tunnel through one of the portions of its iconic Great Wall. The tunnel will connect Zhangjiakou city which is due to co-host 2022 winter Olympics along with Beijing. The line is designed for trains travelling up to 350km per hour, which will shorten the single-journey time from more than 3 hours to approximately one hour.
+Reference : China is reportedly constructing a 12-km-long high-speed train tunnel through one of the portions of its iconic Great Wall to connect Beijing with Zhangjiakou city which will co-host 2022 Winter Olympics. The line is designed for trains traveling up to 350 kmph and is expected to shorten the single-journey time from more than 3 hours to approximately one hour.
+--------------------------------------------------------------------------------
+
+EXAMPLE 2 — ROUGE-1: 0.8454
+Headline  : West Indies' Marlon Samuels cleared to bowl in int'l cricket
+Generated : West Indies all-rounder Marlon Samuels cleared to bowl in international cricket. The 36-year-old was last reported for bowling action during the Galle Test against Sri Lanka in October 2015. He was subsequently suspended for 12 months in December 2015.
+Reference : West Indies all-rounder Marlon Samuels has been cleared to bowl in international cricket after his action was found to be legal following reanalysis. The 36-year-old was last reported for suspect bowling action during the Galle Test against Sri Lanka in October 2015 and was subsequently suspended for 12 months in December 2015.
+--------------------------------------------------------------------------------
+
+EXAMPLE 3 — ROUGE-1: 0.8350
+Headline  : J&K government to provide ?50 lakh to set up football clubs
+Generated : Jammu and Kashmir government will provide Rs 50 lakh each for establishment of football clubs in villages across the state. The announcement was made by Minister for Youth Services and Sports Imran Ansari. Ansari also called for keeping sports infrastructure reserved for two days a week exclusively for the girls.
+Reference : Jammu and Kashmir's Minister for Youth Services and Sports, Imran Ansari announced on Monday that 50 lakh will be provided for the establishment of football clubs in villages across the state. The minister also called for keeping sports infrastructure reserved for two days a week exclusively for the girls of the state.
+--------------------------------------------------------------------------------
+
+EXAMPLE 4 — ROUGE-1: 0.8108
+Headline  : Kapil Mishra assaulted by AAP MLAs inside Delhi Assembly
+Generated : Former minister Kapil Mishra was beaten up by fellow AAP MLAs inside the Delhi Assembly today. He tried to raise slogans against CM Arvind Kejriwal and health minister Satyendra Jain. Mishra said the assault was ordered by Kejriwal and dared the AAP chief to come out clean on the allegations levelled against him.
+Reference : Sacked Delhi minister Kapil Mishra was on Wednesday assaulted by Aam Aadmi Party (AAP) MLAs inside the Assembly as he tried to raise slogans against Chief Minister Arvind Kejriwal and Health Minister Satyendar Jain. Mishra alleged that the assault was ordered by Kejriwal, and dared the AAP convener to come out clean on the allegations levelled against him.
+--------------------------------------------------------------------------------
+
+EXAMPLE 5 — ROUGE-1: 0.8039
+Headline  : Andhra capital will be bigger, better than Hyderabad: CM
+Generated : Andhra Pradesh Chief Minister Chandrababu Naidu said he will build a "bigger, better city" in Amaravati than Hyderabad when the latter becomes the capital of Telangana in 2024. "People should remember me forever. I will make an Andhra Pradesh model," he said.
+Reference : Andhra Pradesh Chief Minister Chandrababu Naidu on Tuesday said he will build a "bigger, better city" in Amaravati, the Andhra capital, than Hyderabad when the latter becomes the capital of Telangana in 2024. "People should remember me forever. I will make an Andhra Pradesh model," he added. Notably, Hyderabad will be the shared capital between the two states till 2024.
+--------------------------------------------------------------------------------
+
+================================================================================
+TOP 5 WORST SUMMARIES (Lowest ROUGE-1)
+================================================================================
+
+EXAMPLE 1 — ROUGE-1: 0.0440
+Headline  : Christopher Nolan's directorial 'Dunkirk' hits the theatres
+Generated : Dunkirk is an existential masterpiece set across three parallel plots destined to collide. Tom Hardy, Fionn Whitehead, Mark Rylance, Harry Styles, Cillian Murphy, Kenneth Branagh.
+Reference : Director Christopher Nolan's film Dunkirk which released on Friday, "is one of the greatest war movies ever made," wrote Hindustan Times. The Guardian wrote, "It's a visceral piece of film-making," while Times of India called it "the first real contender for Best Picture" at Oscars. The film has been rated 5/5 (Hindustan Times, The Guardian) and 4.5/5 (Times Of India).
+--------------------------------------------------------------------------------
+
+EXAMPLE 2 — ROUGE-1: 0.0784
+Headline  : What becomes more expensive after Union Budget 2017? 
+Generated : Personal income tax in Rs 2.5 lakh - 5 lakh bracket has been reduced to 5 per cent from 10 per cent. Political parties receiving donations above Rs 2,000 will now have to disclose the identity of the donor.
+Reference : Finance Minister Arun Jaitley on Wednesday said excise duty on unmanufactured tobacco will be doubled to 8.3% under Union Budget 2017. Other tobacco-related products like cigars, cheroots, pan masala, and cigarettes will also cost more. Prices of items like roasted or salted cashew nuts, circuit boards used in smartphones, and RO membrane elements for household water filters will also increase.
+--------------------------------------------------------------------------------
+
+EXAMPLE 3 — ROUGE-1: 0.0862
+Headline  : Don't care if actors take drugs, but kids shouldn't: Rana
+Generated : The Telangana Prohibition and Excise Department had seized 700 dots of LSD worth Rs 20 lakh and 35gm of MDMA -- commonly known as Ecstasy -- worth Rs 1.4 lakh from three peddlers. The month-long investigation brought to light the drug trade in Hyderabad, which involves Tollywood stars and MNC professionals.
+Reference : Actor Rana Daggubati, while speaking about Hyderabad drug racket case, has said he isn't bothered about actors taking drugs as they're adults, but he's worried about school children taking drugs. "When youngsters who don't have a mind of their own are doing drugs, it scares me," he added. Rana further said it's something that needs to be taken more seriously.
+--------------------------------------------------------------------------------
+
+EXAMPLE 4 — ROUGE-1: 0.0943
+Headline  : Shouldn't rob their childhood: Aamir on kids reality shows 
+Generated : Aamir Khan says his upcoming movie Secret Superstar is another film based on empowerment of the girl child. The film revolves around a teenager who dreams of becoming a famous singer. The actor was present at the trailer launch of the film on Wednesday.
+Reference : Aamir Khan, while talking about reality shows on television that feature kids, said that these shows shouldn't be so aggressive that they rob children of their childhood. "I haven't seen those reality shows...it cuts both ways. There are kids who are talented and want to be out there to show their talent, it (reality shows) gives them an opportunity."
+--------------------------------------------------------------------------------
+
+EXAMPLE 5 — ROUGE-1: 0.1176
+Headline  : Trump orders Republicans to 'let Obamacare fail'
+Generated : President spoke as a new plan to simply repeal the 2010 law with no replacement was in effect strangled at birth by a deeply divided party. This followed the withdrawal of legislation, blindsiding the president, on Monday night. Trump made the repeal and replacement of the ACA a central promise of his election campaign.
+Reference : After efforts to repeal and replace Barack Obama's Affordable Care Act collapsed, US President Donald Trump has said that Republicans should "let Obamacare fail". "I think we're probably in that position where we'll let Obamacare fail. We're not going to own it. I'm not going to own it," Trump added. Notably, around 2 crore people gained health coverage under Obamacare.
+--------------------------------------------------------------------------------
+
+================================================================================
+5 RANDOM EXAMPLES
+================================================================================
+
+EXAMPLE 1 — ROUGE-1: 0.5437
+Headline  : I-T dept attaches assets worth ?33cr linked to AAP minister
+Generated : The assets attached under the Benami Act include more than 100 bighas of land with investment value of Rs 17 crore and shares amounting to Rs 16 crore. Satyendar Jain, who holds the portfolios of industry, power, health and public works department, denied the allegations.
+Reference : The Income Tax Department has provisionally attached assets, amounting to 33 crore, allegedly purchased by AAP Minister Satyendar Jain. The assets attached under the Benami Prohibition Transactions Act include more than 100 bighas of land and shares worth 16 crore. Jain has denied the allegations by saying, "my name has been wrongly dragged to create a false impression."
+--------------------------------------------------------------------------------
+
+EXAMPLE 2 — ROUGE-1: 0.3471
+Headline  : Mumbai family plants 5,500 saplings over 17 years
+Generated : Sandeep Athalye, 37, his wife Vardayeeni, their four-year-old son Malhar and mother Aarti have been carrying the baton passed onto them by his father Vinay, who passed away in 2015. They have so far planted 5,500 saplings. Last year, they started a butterfly garden near Aarey dairy, and it is already buzzing with 15-20 species of butterflies.
+Reference : A family in Mumbai has planted around 5,500 saplings in Aarey Milk Colony over the last 17 years. The initiative was started by Vinay Athalye, in 2000. Over the years he planted about 3,500 saplings, which have now turned into a dense forest with 75 varieties of trees. After his death, his family has been continuing the initiative.
+--------------------------------------------------------------------------------
+
+EXAMPLE 3 — ROUGE-1: 0.5094
+Headline  : Kejriwal repeats 'take bribe' appeal despite EC notice
+Generated : Arvind Kejriwal reiterated his appeal to voters to accept bribes offered by political parties but cast their ballot for his Aam Aadmi Party. Election Commission issued him a notice for allegedly promoting bribery. Kejriwal claimed that this matter has been already settled in court.
+Reference : Delhi CM Arvind Kejriwal on Tuesday told voters in Punjab they should accept bribes offered by other political parties but cast their vote only for AAP. This comes a day after Election Commission issued a notice to Kejriwal for similar remarks in Goa alleging that it promoted bribery. If they are offering 5,000, ask for 10,000, Kejriwal said to voters.
+--------------------------------------------------------------------------------
+
+EXAMPLE 4 — ROUGE-1: 0.2268
+Headline  : Wanting MSD to bat, crowd chants 'Saurabh Tiwary haye haye'
+Generated : Jharkhand beat Services by seven wickets in the Vijay Hazare Trophy. Saurabh Tiwary and Ishank Jaggi put together an unbroken 214-run partnership. Dhoni returned on the field during the customary handshake after the win.
+Reference : Spectators jeered batsman Saurabh Tiwary during Jharkhand's Vijay Hazare Trophy match against Services in Kalyani on Tuesday, since they wanted to see his teammate MS Dhoni bat. Saurabh, who scored 102*, was subjected to chants of 'Saurabh Tiwary haye haye' since he was not getting out. "We must understand that they're emotional as Mahi bhai never played here," said Saurabh.
+--------------------------------------------------------------------------------
+
+EXAMPLE 5 — ROUGE-1: 0.4304
+Headline  : Airbnb host who cancelled stay over guest's race fined ?3L
+Generated : Dyne Suh, a 26-year-old law clerk, had booked Tami Barker s mountain cabin in Big Bear, California, for a skiing weekend with friends in February. Barker canceled the reservation by text message minutes before they arrived,stating: I wouldn t rent it to u if u were the last person on earth and One word says it all. Asian . This is the first time an Airbnb host has been penalized for racial discrimination under a landmark agreement between the San Francisco-headquartered accommodation marketplace and the California department of fair employment and housing.
+Reference : An Airbnb host who cancelled a woman's reservation as she was Asian has been fined 3 lakh for racial discrimination and ordered to take a course in Asian-American studies. Homestay startup Airbnb also permanently banned the host after the incident was reported. "I wouldn t rent it to u if u were the last person on earth, the host told her.
+--------------------------------------------------------------------------------
+

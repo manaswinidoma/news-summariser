@@ -1,0 +1,15 @@
+{
+    "model_name": "facebook/bart-large-cnn",
+    "sample_size": 1000,
+    "max_input_tokens": 1024,
+    "min_summary_len": 30,
+    "max_summary_len": 150,
+    "beam_size": 4,
+    "length_penalty": 2.0,
+    "no_repeat_ngram": 3,
+    "rouge1_mean": 0.4244,
+    "rouge2_mean": 0.2056,
+    "rougeL_mean": 0.3052,
+    "dataset": "Inshorts News Summary (Kaggle)",
+    "generated_at": "2026-05-16 09:00:17"
+}
