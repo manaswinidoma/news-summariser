@@ -205,8 +205,8 @@ DEVICE           = 'cuda'  # Tesla T4 GPU on Kaggle
 ---
 
 ## 👥 Group Members
-MANASWINI DOMA 
+```Manaswini Doma
 Brunda Varshini Katapalli
-
+```
 
 

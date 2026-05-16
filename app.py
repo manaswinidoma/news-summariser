@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import os
+import re
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -144,40 +145,73 @@ def summarize_text(text: str) -> str:
     except Exception as e:
         return f"Error: {str(e)}"
 
-
-def fetch_news(category: str = "general", 
-               country: str = "us") -> list:
-    """
-    Fetches today's top news headlines using NewsAPI.
+def clean_news_content(content: str, description: str = "") -> str:
+    if not content:
+        content = ""
     
-    Args:
-        category: news category (general, technology, business etc.)
-        country: country code (us, gb, au etc.)
-    Returns:
-        list of article dictionaries
-    """
+    # Remove [+XXXX chars] truncation marker
+    content = re.sub(r'\[\+\d+ chars\]', '', content)
+    content = content.strip()
+    
+    # Only use description if content is very short
+    # Don't combine both to avoid repetition
+    if len(content.split()) < 20 and description:
+        content = description
+    
+    return content.strip()
+
+def fetch_news(category: str = "general",
+               country: str = "us") -> list:
     if not NEWS_API_KEY:
-        # Return sample articles if no API key
         return get_sample_articles()
     
     try:
-        url = (
-            f"https://newsapi.org/v2/top-headlines?"
-            f"category={category}&"
-            f"country={country}&"
-            f"pageSize=10&"
-            f"apiKey={NEWS_API_KEY}"
-        )
+        # US works with top-headlines
+        # Other countries use everything endpoint
+        if country == "us":
+            url = (
+                f"https://newsapi.org/v2/top-headlines?"
+                f"country=us&"
+                f"category={category}&"
+                f"pageSize=10&"
+                f"apiKey={NEWS_API_KEY}"
+            )
+        else:
+            # Map country to search terms
+            country_query = {
+                "gb": "UK Britain",
+                "au": "Australia",
+                "in": "India",
+                "ca": "Canada",
+                "ae": "UAE Dubai",
+                "za": "South Africa",
+                "ng": "Nigeria",
+                "nz": "New Zealand",
+                "ie": "Ireland"
+            }.get(country, "world")
+            
+            url = (
+                f"https://newsapi.org/v2/everything?"
+                f"q={country_query}&"
+                f"language=en&"
+                f"sortBy=publishedAt&"
+                f"pageSize=10&"
+                f"apiKey={NEWS_API_KEY}"
+            )
+        
         response = requests.get(url, timeout=10)
         data = response.json()
         
         if data['status'] == 'ok':
-            # Filter out articles with no content
-            articles = [
-                a for a in data['articles'] 
-                if a.get('content') and len(a['content']) > 100
-            ]
-            return articles
+            articles = []
+            for a in data['articles']:
+                content = a.get('content', '')
+                description = a.get('description', '')
+                cleaned = clean_news_content(content, description)
+                if len(cleaned.split()) >= 20:
+                    a['content'] = cleaned
+                    articles.append(a)
+            return articles if articles else get_sample_articles()
         return get_sample_articles()
     
     except Exception:
@@ -341,15 +375,15 @@ if fetch_btn:
             source  = article.get('source', {}).get('name', 'Unknown')
             url     = article.get('url', '#')
             
-            # Skip articles with no content
-            if not content or len(content) < 50:
+            # Skip if still too short
+            if not content or len(content.split()) < 20:
                 continue
             
             # Generate summary
             with st.spinner(f"🤖 Summarizing article {i+1}/{len(articles)}..."):
                 summary = summarize_text(content)
             
-            # Display as Inshorts-style card
+            # Display card
             st.markdown(f"""
                 <div class='news-card'>
                     <div class='headline'>{title}</div>
