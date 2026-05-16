@@ -2,7 +2,7 @@
 
 > An Inshorts-style AI-powered news summarizer that fetches today's news and generates concise summaries using the BART transformer model. Built as part of a Natural Language Processing (NLP) university assignment.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://newsbrief.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https:/news-summariser-qtejpjjtuogknz3maeao7w.streamlit.app/)
 
 ---
 
