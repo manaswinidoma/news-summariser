@@ -286,14 +286,19 @@ def summarize_text(text: str) -> str:
             return f" {result['error']} - please try again in 20 seconds"
         
         if isinstance(result, list) and len(result) > 0:
-            return result[0]['summary_text']
+            if 'summary_text' in result[0]:
+                return result[0]['summary_text']
+            return " Unexpected response format — please try again"
         
         return "Model loading — please try again in 20 seconds"
     
     except requests.exceptions.Timeout:
         return "Request timed out - please try again"
     except Exception as e:
-        return f"Error: {str(e)}"
+        error_msg = str(e)
+        if "index out of range" in error_msg:
+            return " Model is warming up — please try again in 20 seconds"
+        return f" Request timed out — please try again in 20 seconds"
 
 def clean_news_content(content: str, description: str = "") -> str:
     if not content:
@@ -304,7 +309,7 @@ def clean_news_content(content: str, description: str = "") -> str:
     
     # Only use description if content is very short
     # Don't combine both to avoid repetition
-    if len(content.split()) < 20 and description:
+    if len(content.split()) < 50 and description:
         content = description
     
     return content.strip()
@@ -357,7 +362,7 @@ def fetch_news(category: str = "general",
                 content = a.get('content', '')
                 description = a.get('description', '')
                 cleaned = clean_news_content(content, description)
-                if len(cleaned.split()) >= 20:
+                if len(cleaned.split()) >= 50:
                     a['content'] = cleaned
                     articles.append(a)
             return articles if articles else get_sample_articles()
@@ -569,7 +574,7 @@ if fetch_btn:
             url     = article.get('url', '#')
             
             # Skip if still too short
-            if not content or len(content.split()) < 20:
+            if not content or len(content.split()) < 50:
                 continue
             
             # Generate summary
