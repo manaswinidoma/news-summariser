@@ -20,7 +20,7 @@ HF_HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
 # ============================================================
 st.set_page_config(
     page_title  = "NewsBrief — AI News Summarizer",
-    page_icon   = "🗞️",
+    page_icon   = "News Icon.png",
     layout      = "wide",
     initial_sidebar_state = "expanded"
 )
@@ -29,67 +29,217 @@ st.set_page_config(
 # CUSTOM CSS — Inshorts style cards
 # ============================================================
 st.markdown("""
-    <style>
-    /* Main background */
-    .main { background-color: #f5f5f5; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── OVERALL PAGE background ── */
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #050505;
+    color: #08027a;
+}
+
+/* ── MAIN CONTENT AREA ── */
+.main .block-container {
+    background: #f2e6ff;
+    padding: 2rem 3rem 4rem;
+    max-width: 1100px;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #c293ae; }
+::-webkit-scrollbar-thumb { background: #c293ae; border-radius: 5px; }
+
+/* ── MASTHEAD ── */
+.masthead {
+    border-top: 3px solid #451ce8;
+    border-bottom: 3px solid #451ce8;
+    padding: 1.5rem 0 1.2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #0f013b;
+    margin: 0;
+}
+
+.masthead-title span { color: #7175bf; }
+
+.masthead-meta {
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #000000;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.8;
+}
+
+.masthead-date {
+    font-size: 0.90rem;
+    color: #999;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+}
     
-    /* News card styling */
+            
+            /* ── NEWS GRID ── */
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: #451ce8;
+    margin-bottom: 1.5px;
+}
+
+.news-grid-full {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5px;
+    background: #010729;
+    margin-bottom: 1.5px;
+}
+            
+            /* News card styling */
     .news-card {
-        background-color: white;
+        background-color: #ecebfa;
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        border-left: 4px solid #ff4b4b;
+        box-shadow: 2 2px 8px rgba(0,0,0,0.1);
+        border-left: 4px solid #0c0461;
     }
     
-    /* Headline styling */
-    .headline {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1a1a1a;
-        margin-bottom: 10px;
-    }
-    
-    /* Summary styling */
-    .summary {
-        font-size: 14px;
-        color: #444444;
-        line-height: 1.6;
-        margin-bottom: 10px;
-    }
-    
-    /* Category badge */
-    .badge {
-        background-color: #ff4b4b;
-        color: white;
-        padding: 3px 10px;
-        border-radius: 12px;
-        font-size: 11px;
-        font-weight: 600;
-    }
 
-    /* Header styling */
-    .app-header {
-        text-align: center;
-        padding: 20px 0;
-        margin-bottom: 30px;
-    }
-    
-    /* Source text */
-    .source-text {
-        font-size: 12px;
-        color: #888888;
-        margin-top: 8px;
-    }
-    
-    /* Loading text */
-    .loading {
-        text-align: center;
-        color: #ff4b4b;
-        font-size: 16px;
-    }
-    </style>
+
+            /* ── SIDEBAR ── */
+section[data-testid="stSidebar"] {
+    background: #c5c5f0 !important;
+    border-right: 2px solid #451ce8;
+}
+
+section[data-testid="stSidebar"] > div {
+    padding-top: 0 !important;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-top: -4rem !important;
+}
+
+.sidebar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #0f013b;
+    margin-bottom: 0.2rem;
+}
+
+.sidebar-brand span { color: #7175bf; }
+
+.sidebar-tagline {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #451ce8;
+}
+
+.sidebar-section {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #000000;
+    margin: 0.2rem 0 0.2rem;
+}
+
+/* ── MODEL INFO ── */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #7175bf;
+}
+
+.stat-label { font-size: 0.72rem; color: #000000; font-weight: 500; }
+.stat-value { font-size: 0.72rem; color: #000000; font-weight: 300; font-family: 'Playfair Display', serif; }
+
+/* ── ALL BUTTONS ── */
+.stButton > button {
+    background: #590355 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 2px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.72rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.19em !important;
+    text-transform: uppercase !important;
+    padding: 0.65rem 1.5rem !important;
+    transition: background 0.2s ease !important;
+    width: 100% !important;
+}
+
+.stButton > button:hover {
+    background: #d4aecf !important;
+    color: #000000 !important;
+}
+
+.stButton > button p,
+.stButton > button span {
+    color: inherit !important;
+    font-weight: 900 !important;
+}
+
+/* ── DROPDOWNS ── */
+.stSelectbox label {
+    font-size: 0.62rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+}
+            
+
+
+/* ── Summary result box ── */
+.summary-result {
+    background: #141414;
+    border: 1px solid #451ce8;
+    border-left: 3px solid #7175bf;
+    padding: 1rem;
+    border-radius: 0 2px 2px 0;
+    margin-top: 0.8rem;
+}
+
+.summary-result p {
+    font-size: 0.82rem !important;
+    color: #bbb !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+}
+
+hr { border: none; border-top: 1px solid #451ce8; margin: 0.5rem 0; }
+</style>
+            
+
 """, unsafe_allow_html=True)
 
 # ============================================================
@@ -124,24 +274,24 @@ def summarize_text(text: str) -> str:
         
         # Model still loading
         if response.status_code == 503:
-            return "⏳ Model is loading on HuggingFace servers, please wait 20 seconds and try again..."
+            return " Model is loading on HuggingFace servers, please wait 20 seconds and try again..."
         
         # Check if response is empty
         if not response.text:
-            return "⏳ Empty response — model may be loading, please try again..."
+            return " Empty response - model may be loading, please try again..."
         
         result = response.json()
         
         if isinstance(result, dict) and 'error' in result:
-            return f"⏳ {result['error']} — please try again in 20 seconds"
+            return f" {result['error']} - please try again in 20 seconds"
         
         if isinstance(result, list) and len(result) > 0:
             return result[0]['summary_text']
         
-        return "⏳ Model loading — please try again in 20 seconds"
+        return "Model loading — please try again in 20 seconds"
     
     except requests.exceptions.Timeout:
-        return "⏳ Request timed out — please try again"
+        return "Request timed out - please try again"
     except Exception as e:
         return f"Error: {str(e)}"
 
@@ -149,7 +299,6 @@ def clean_news_content(content: str, description: str = "") -> str:
     if not content:
         content = ""
     
-    # Remove [+XXXX chars] truncation marker
     content = re.sub(r'\[\+\d+ chars\]', '', content)
     content = content.strip()
     
@@ -277,42 +426,54 @@ def get_sample_articles() -> list:
 # SIDEBAR
 # ============================================================
 with st.sidebar:
-    
-    st.markdown("### 🗞️ NewsBrief")
-    # News category selector
+
+    # ── Sidebar logo ──
+    st.markdown("""
+        <div class='sidebar-brand'>News<span>Brief</span></div>
+        <div class='sidebar-tagline'>AI-powered summaries</div>
+    """, unsafe_allow_html=True)
+
+    # ── "EDITION" section label ──
+    st.markdown("<div class='sidebar-section'>Edition</div>", unsafe_allow_html=True)
+
+    # ── Category dropdown ──
     category = st.selectbox(
-        "📂 News Category",
-        ["general", "technology", "business", 
-         "science", "health", "sports", "entertainment"],
-        index=0
+        "Category",
+        ["General", "Technology", "Business", "Science", "Health", "Sports", "Entertainment"],
+        index=0,
+        label_visibility="collapsed"
     )
-    
-    # Country selector
+
+    # ── Country dropdown ──
     country = st.selectbox(
-        "🌍 Country",
-        ["us", "gb", "au", "in", "ca"],
+        "Country",
+        ["us", "uk", "au", "in", "ca"],
         format_func=lambda x: {
-            "us": "🇺🇸 United States",
-            "gb": "🇬🇧 United Kingdom", 
-            "au": "🇦🇺 Australia",
-            "in": "🇮🇳 India",
-            "ca": "🇨🇦 Canada"
+            "us": "US  United States",
+            "uk": "UK  United Kingdom",
+            "au": "AU  Australia",
+            "in": "IN  India",
+            "ca": "CA  Canada"
         }[x],
-        index=0
+        index=0,
+        label_visibility="collapsed"
     )
     
-    st.markdown("---")
+    st.markdown("<div style='margin-top:0.8rem'></div>", unsafe_allow_html=True)
+
+    st.markdown("<hr>", unsafe_allow_html=True)
     
     # Custom text summarizer
-    st.markdown("### ✏️ Summarize Custom Text")
+    st.markdown("<div class='sidebar-section'>Summarize any text</div>", unsafe_allow_html=True)
     custom_text = st.text_area(
-        "Paste any article text:",
-        height=150,
-        placeholder="Paste a news article here to summarize..."
+        "Paste article",
+        height=130,
+        placeholder="Paste any article here...",
+        label_visibility="collapsed"
     )
     
     summarize_btn = st.button(
-        "🤖 Summarize", 
+        " Summarize", 
         use_container_width=True,
         type="primary"
     )
@@ -320,38 +481,56 @@ with st.sidebar:
     if summarize_btn and custom_text:
         with st.spinner("Generating summary..."):
             custom_summary = summarize_text(custom_text)
-        st.success("✅ Summary Generated!")
+        st.success(" Summary Generated!")
         st.markdown(f"**Summary:**\n\n{custom_summary}")
     
-    st.markdown("---")
-    st.markdown("### 📊 About")
-    st.markdown("""
-    **Model:** facebook/bart-large-cnn  
-    **Dataset:** Inshorts News Summary  
-    **Evaluation:** ROUGE-1: 42.44%
-    **Built with:** Streamlit + HuggingFace  
-    """)
+    # ── MODEL INFO stats panel at bottom of sidebar ──
+    st.markdown("<div class='sidebar-section'>Model info</div>", unsafe_allow_html=True)
+    for label, val in [
+        ("Model", "BART-large-CNN"),
+        ("Dataset", "Inshorts"),
+        ("ROUGE-1", "42.44 %"),
+        ("Max tokens", "1024"),
+        
+    ]:
+        st.markdown(f"""
+            <div class='stat-row'>
+                <span class='stat-label'>{label}</span>
+                <span class='stat-value'>{val}</span>
+            </div>
+        """, unsafe_allow_html=True) 
+    
 
 # ============================================================
 # MAIN APP
 # ============================================================
 
 # Header
-st.markdown("""
-    <div class='app-header'>
-        <h1>🗞️ NewsBrief</h1>
-        <p style='color: #888; font-size: 16px;'>
-            AI-powered news summarizer using BART — 
-            Get today's news in 60 words or less
-        </p>
+
+today = datetime.now().strftime("%A, %B %d %Y").upper()
+edition_label = category.upper()
+
+# ── MASTHEAD: big "NewsBrief" heading + date + top-right meta ──
+st.markdown(f"""
+    <div class='masthead'>
+        <div>
+            <div class='masthead-title'>News<span>Brief</span></div>
+            <div class='masthead-date'>{today}</div>
+        </div>
+        <div class='masthead-meta'>
+            AI-Powered News Intelligence<br>
+            Edition: {edition_label}<br>
+            Model: BART-large-CNN
+        </div>
     </div>
 """, unsafe_allow_html=True)
+
 
 # Fetch news button
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     fetch_btn = st.button(
-        "🔄 Fetch Today's News", 
+        "Fetch Today's News", 
         use_container_width=True,
         type="primary"
     )
@@ -360,13 +539,13 @@ st.markdown("---")
 
 # ── Fetch and display news ──
 if fetch_btn:
-    with st.spinner("📡 Fetching latest news..."):
+    with st.spinner(" Fetching latest news..."):
         articles = fetch_news(category=category, country=country)
     
     if not articles:
         st.warning("No articles found. Try a different category or country.")
     else:
-        st.success(f"✅ Found {len(articles)} articles — generating summaries...")
+        st.success(f" Found {len(articles)} articles - Generating summaries....")
         
         # Display each article as a card
         for i, article in enumerate(articles):
@@ -380,7 +559,7 @@ if fetch_btn:
                 continue
             
             # Generate summary
-            with st.spinner(f"🤖 Summarizing article {i+1}/{len(articles)}..."):
+            with st.spinner(f" Summarizing Article {i+1}/{len(articles)}..."):
                 summary = summarize_text(content)
             
             # Display card
@@ -399,7 +578,7 @@ else:
     # Default state — show instructions
     st.markdown("""
         <div style='text-align: center; padding: 50px; color: #888;'>
-            <h3>👆 Click "Fetch Today's News" to get started</h3>
+            <h3> Click "Fetch Today's News" to get started</h3>
             <p>Or paste any article text in the sidebar to summarize it instantly</p>
             <br>
             <p style='font-size: 13px;'>
