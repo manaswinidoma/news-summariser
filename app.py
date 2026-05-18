@@ -265,7 +265,7 @@ def summarize_text(text: str) -> str:
                     "no_repeat_ngram_size": 3
                 }
             },
-            timeout=120
+            timeout=60
         )
         
         # Print status for debugging
