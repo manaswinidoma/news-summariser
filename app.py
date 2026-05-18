@@ -265,7 +265,7 @@ def summarize_text(text: str) -> str:
                     "no_repeat_ngram_size": 3
                 }
             },
-            timeout=60
+            timeout=120
         )
         
         # Print status for debugging
@@ -478,11 +478,25 @@ with st.sidebar:
         type="primary"
     )
     
-    if summarize_btn and custom_text:
-        with st.spinner("Generating summary..."):
-            custom_summary = summarize_text(custom_text)
-        st.success(" Summary Generated!")
-        st.markdown(f"**Summary:**\n\n{custom_summary}")
+    
+            
+    if summarize_btn:
+        if not custom_text:
+            st.warning(" Please paste some text first.")
+        elif len(custom_text.split()) < 50:
+            st.error(f" Please enter at least 50 words. You entered {len(custom_text.split())} word(s).")
+        else:
+            with st.spinner("Generating summary..."):
+                custom_summary = summarize_text(custom_text)
+            
+            # Check if summary is an error message
+            if any(phrase in custom_summary for phrase in [
+                "Error", "timed out", "loading", "please try again"
+            ]):
+                st.error(f" {custom_summary}")
+            else:
+                st.success(" Summary Generated!")
+                st.markdown(f"**Summary:**\n\n{custom_summary}")
     
     # ── MODEL INFO stats panel at bottom of sidebar ──
     st.markdown("<div class='sidebar-section'>Model info</div>", unsafe_allow_html=True)
